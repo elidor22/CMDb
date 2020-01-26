@@ -8,6 +8,9 @@ public class users {
     private int id;
     private String username;
     private String password;
+    private boolean is_admin;
+
+
 
     @Id
     @Column(name = "id")
@@ -34,5 +37,13 @@ public class users {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public boolean isIs_admin() {
+        return is_admin;
+    }
+
+    public void setIs_admin(boolean is_admin) {
+        this.is_admin = is_admin;
     }
 }
