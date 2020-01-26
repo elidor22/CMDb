@@ -3,10 +3,13 @@ import com.azure.storage.blob.BlobContainerClient;
 import com.azure.storage.blob.BlobServiceClient;
 import com.azure.storage.blob.BlobServiceClientBuilder;
 import com.azure.storage.blob.models.BlobProperties;
+import com.azure.storage.blob.models.BlockBlobItem;
+import jdk.jfr.ContentType;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.http.HttpHeaders;
 
 public class blob_test {
 
@@ -25,7 +28,6 @@ public class blob_test {
         String localPath = "/home/elidor/Downloads/the_punisher.jpg";
         String fileName = "punisher-lundgren-jane-stevenson"+"jpg";
        // File localFile = new File(localPath + fileName);
-
 
 // Get a reference to a blob
         BlobClient blobClient = containerClient.getBlobClient(fileName);

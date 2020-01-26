@@ -6,7 +6,7 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
-public class DbTest {
+public class MovieDbController {
 
     SessionFactory sessionFactory;
 
@@ -31,7 +31,7 @@ public class DbTest {
         // code to get a movie by id
         Session session = sessionFactory.openSession();
 
-        int id = 1;
+        int id = 2;
         movies mov = session.get(movies.class, id);
 
         System.out.println("Title: " + mov.getTitle());
@@ -41,11 +41,33 @@ public class DbTest {
         session.close();
     }
 
+
+    protected void create(String title, String author,String cast, String plot, float rating) {
+        // code to save a book
+        movies movies = new movies();
+        movies.setTitle(title);
+        movies.setDirector(author);
+        movies.setCast(cast);
+        movies.setPlot(plot);
+        movies.setRating(rating);
+
+
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+
+        session.save(movies);
+
+        session.getTransaction().commit();
+        session.close();
+    }
+
     public static void main(String args[]){
-        DbTest dbTest = new DbTest();
-        dbTest.setup();
-       dbTest.read();
-      //  dbTest.exit();
+        MovieDbController movieDbController = new MovieDbController();
+        movieDbController.setup();
+        movieDbController.read();
+        //Just example data to test code functionality
+       //dbTest.create("The punisher", "Marvel Entertainment", "JOhn Bernthal", "A guy getting revenge,", 9.17f);
+
 
 
     }

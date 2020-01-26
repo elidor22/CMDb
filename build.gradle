@@ -17,4 +17,5 @@ dependencies {
     compile group: 'org.hibernate', name: 'hibernate-core', version: '5.4.10.Final'
     compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.18'
     testCompile group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.7.30'
+    implementation "org.mindrot:jbcrypt:0.4"
 }
