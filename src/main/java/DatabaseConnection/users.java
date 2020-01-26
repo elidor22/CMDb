@@ -33,7 +33,6 @@ public class users {
     }
 
     public void setPassword(String password) {
-    Encryption_Provider encryption_provider = new Encryption_Provider();
-        this.password = encryption_provider.hashPassword(password);
+        this.password = password;
     }
 }
