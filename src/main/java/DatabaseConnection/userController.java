@@ -65,9 +65,9 @@ public class userController {
         usrDat_parser dat_parser = new usrDat_parser();
         List<users> usr = query.list();
         for (users user : usr) {
-            System.out.println("Username " + user.getUsername());
-            System.out.println("Password " + user.getPassword());
-            System.out.println("Is admin " + user.isIs_admin());
+           // System.out.println("Username " + user.getUsername());
+           // System.out.println("Password " + user.getPassword());
+           // System.out.println("Is admin " + user.isIs_admin());
             dat_parser.setId(user.getId());
             dat_parser.setUsername(user.getUsername());
             dat_parser.setPassword(user.getPassword());

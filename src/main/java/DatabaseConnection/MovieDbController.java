@@ -1,10 +1,15 @@
 package DatabaseConnection;
 
+import Utilities.movDat_parser;
+import Utilities.usrDat_parser;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.query.Query;
+
+import java.util.List;
 
 public class MovieDbController {
 
@@ -60,11 +65,36 @@ public class MovieDbController {
         session.getTransaction().commit();
         session.close();
     }
+    public void query(String title){
+        String hql = "from movies where title like :keyword";
+        Session session = sessionFactory.openSession();
+        String keyword = title;
+        Query query = session.createQuery(hql);
+        query.setParameter("keyword", "%" + keyword + "%");
+
+        movDat_parser dat_parser = new movDat_parser();
+        List<movies> movies = query.list();
+        for (movies mov : movies) {
+            dat_parser.setId(mov.getId());
+            dat_parser.setCast(mov.getCast());
+            dat_parser.setTitle(mov.getTitle());
+            dat_parser.setDirector(mov.getDirector());
+            dat_parser.setPlot(mov.getPlot());
+            dat_parser.setRating(mov.getRating());
+
+            System.out.println("Cast is "+dat_parser.getCast()+"\n Title is "+dat_parser.getTitle());
+        }
+
+        session.close();
+
+
+    }
 
     public static void main(String args[]){
         MovieDbController movieDbController = new MovieDbController();
         movieDbController.setup();
-        movieDbController.read();
+        //movieDbController.read();
+        movieDbController.query("The punisher");
         //Just example data to test code functionality
        //dbTest.create("The punisher", "Marvel Entertainment", "JOhn Bernthal", "A guy getting revenge,", 9.17f);
 

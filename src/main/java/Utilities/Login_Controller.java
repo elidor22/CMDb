@@ -28,7 +28,7 @@ public class Login_Controller {
         ctrl.query(username);
 
         boolean valid = dat.isIs_admin();
-
+        System.out.println("Username is "+dat.getUsername());
         return valid;
     }
 
@@ -36,7 +36,7 @@ public class Login_Controller {
     public static void main(String args[]){
         Login_Controller lg = new Login_Controller();
 
-       boolean validated= lg.validate_admin("User");
+       boolean validated= lg.validate_admin("user");
         System.out.println(validated);
     }
 

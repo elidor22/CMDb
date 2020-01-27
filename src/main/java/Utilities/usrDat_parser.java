@@ -1,9 +1,6 @@
 package Utilities;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
 
 public class usrDat_parser {
     private static int id;
@@ -12,10 +9,6 @@ public class usrDat_parser {
     private static boolean is_admin;
 
 
-
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId() {
         return id;
     }
