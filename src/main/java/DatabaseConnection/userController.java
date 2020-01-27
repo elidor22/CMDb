@@ -1,5 +1,6 @@
 package DatabaseConnection;
 
+import Utilities.Encryption_Provider;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
@@ -8,11 +9,12 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.query.Query;
 
 import java.util.List;
-
+import Utilities.usrDat_parser;
 public class userController {
     SessionFactory sessionFactory;
 
-    protected void setup() {
+
+    public void setup() {
         // code to load Hibernate Session factory
         final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .configure() // configures settings from hibernate.cfg.xml
@@ -60,14 +62,21 @@ public class userController {
         Query query = session.createQuery(hql);
         query.setParameter("keyword", "%" + keyword + "%");
 
+        usrDat_parser dat_parser = new usrDat_parser();
         List<users> usr = query.list();
         for (users user : usr) {
             System.out.println("Username " + user.getUsername());
             System.out.println("Password " + user.getPassword());
             System.out.println("Is admin " + user.isIs_admin());
+            dat_parser.setId(user.getId());
+            dat_parser.setUsername(user.getUsername());
+            dat_parser.setPassword(user.getPassword());
+            dat_parser.setIs_admin(user.isIs_admin());
 
         }
+
         session.close();
+
 
     }
 
@@ -96,9 +105,11 @@ public class userController {
         userController ctrl = new userController();
         ctrl.setup();
         //ctrl.create("User55", "hashed_one");
-        ctrl.query("ev");
-        //ctrl.update("EV","saltednow",true);
+        ctrl.query("EV");
+       // ctrl.update("EV","saltednow",true);
         //ctrl.read();
 
     }
+
+
 }

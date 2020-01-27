@@ -1,4 +1,4 @@
-package DatabaseConnection;
+package Utilities;
 
 import org.mindrot.jbcrypt.BCrypt;
 
