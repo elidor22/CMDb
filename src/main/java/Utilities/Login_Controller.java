@@ -5,7 +5,6 @@ import DatabaseConnection.userController;
 
 public class Login_Controller {
     userController ctrl = new userController();
-    users usr = new users();
     Encryption_Provider encrypt = new Encryption_Provider();
     usrDat_parser dat = new usrDat_parser();
     public String username = "EV";
@@ -36,7 +35,7 @@ public class Login_Controller {
     public static void main(String args[]){
         Login_Controller lg = new Login_Controller();
 
-       boolean validated= lg.validate_admin("user");
+       boolean validated= lg.validate_admin("user2");
         System.out.println(validated);
     }
 

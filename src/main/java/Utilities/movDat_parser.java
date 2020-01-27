@@ -4,12 +4,16 @@ package Utilities;
 
 public class movDat_parser {
 
-    private int id;
-    private String title;
-    private String director;
-    private String cast;
-    private String plot;
-    private float rating;
+    private static int id;
+    private static String title;
+    private static String director;
+    private static String cast;
+    private static String plot;
+    private static float rating;
+
+
+
+
 
     public int getId() {
         return id;
@@ -57,5 +61,13 @@ public class movDat_parser {
 
     public void setRating(float rating) {
         this.rating = rating;
+    }
+
+    public int compareTo(movDat_parser dat_parser)
+    {
+        int res=0;
+        if (rating < dat_parser.rating) {res=-1;  }
+        if (rating > dat_parser.rating){res=1;}
+        return res;
     }
 }

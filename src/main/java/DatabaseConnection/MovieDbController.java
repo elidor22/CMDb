@@ -9,13 +9,17 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.query.Query;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import Utilities.movDat_parser ;
 
 public class MovieDbController {
 
     SessionFactory sessionFactory;
+    public static ArrayList<movDat_parser> list;
 
-    protected void setup() {
+    public void setup() {
         // code to load Hibernate Session factory
         final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .configure() // configures settings from hibernate.cfg.xml
@@ -32,7 +36,7 @@ public class MovieDbController {
         sessionFactory.close();
     }
 
-    protected void read() {
+    public  void read() {
         // code to get a movie by id
         Session session = sessionFactory.openSession();
 
@@ -82,6 +86,8 @@ public class MovieDbController {
             dat_parser.setPlot(mov.getPlot());
             dat_parser.setRating(mov.getRating());
 
+            list.add(dat_parser);
+
             System.out.println("Cast is "+dat_parser.getCast()+"\n Title is "+dat_parser.getTitle());
         }
 
@@ -89,6 +95,8 @@ public class MovieDbController {
 
 
     }
+
+
 
     public static void main(String args[]){
         MovieDbController movieDbController = new MovieDbController();

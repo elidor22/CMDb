@@ -2,6 +2,8 @@ import com.azure.storage.blob.BlobClient;
 import com.azure.storage.blob.BlobContainerClient;
 import com.azure.storage.blob.BlobServiceClient;
 import com.azure.storage.blob.BlobServiceClientBuilder;
+import com.azure.storage.blob.implementation.util.BlobHeadersAndQueryParameters;
+import com.azure.storage.blob.models.BlobHttpHeaders;
 import com.azure.storage.blob.models.BlobProperties;
 import com.azure.storage.blob.models.BlockBlobItem;
 import jdk.jfr.ContentType;
@@ -25,8 +27,8 @@ public class blob_test {
 
 // Create the container and return a container client object
         BlobContainerClient containerClient = blobServiceClient.getBlobContainerClient(containerName);
-        String localPath = "/home/elidor/Downloads/the_punisher.jpg";
-        String fileName = "punisher-lundgren-jane-stevenson"+"jpg";
+        String localPath = "/home/elidor/Downloads/nbcu-61105127-Full-Image_GalleryBackground-en-US-1483994507952._SX1080_.jpg";
+        String fileName = "shawnofthedeaddd"+".jpg";
        // File localFile = new File(localPath + fileName);
 
 // Get a reference to a blob
@@ -34,7 +36,13 @@ public class blob_test {
         System.out.println("\nUploading to Blob storage as blob:\n\t" + blobClient.getBlobUrl());
 
 // Upload the blob
+        BlobHttpHeaders hd = new BlobHttpHeaders();
         blobClient.uploadFromFile(localPath);
+        hd.setContentType("Content-Type: image/jpeg");
+        blobClient.setHttpHeaders(hd);
+
+        String uri = blobClient.getBlobUrl();
+        System.out.println(uri);
     }
 
 }
