@@ -1,13 +1,16 @@
 package Utilities;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import DatabaseConnection.MovieDbController;
+import DatabaseConnection.movies;
+
 public class MovieSorter {
     int pass;
-    public  void bubbleSort(ArrayList<movDat_parser> list) {
-        movDat_parser temp;
+    public  void bubbleSort(List<movies> list) {
+        movies temp;
 
         for (int i = 0; i < list.size(); i++) {
             boolean swap = false;
@@ -31,14 +34,17 @@ public class MovieSorter {
 
     public static void main(String args[]){
         MovieSorter ms = new MovieSorter();
-        movDat_parser parser = new movDat_parser();
+        movies parser = new movies();
         MovieDbController db = new MovieDbController();
 
         db.setup();
         db.query("The punisher");
-        ArrayList<movDat_parser> parsers;
-        parsers=MovieDbController.list;
+        List<movies> parsers;
+        parsers=db.list;
         ms.bubbleSort(parsers);
+        Collections.reverse(parsers);
+        parser = parsers.get(1);
+        System.out.println(parser.getRating()+"Plot is "+parser.getPlot());
 
 
     }

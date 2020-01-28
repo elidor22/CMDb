@@ -17,7 +17,7 @@ import Utilities.movDat_parser ;
 public class MovieDbController {
 
     SessionFactory sessionFactory;
-    public static ArrayList<movDat_parser> list;
+    public static List<movies> list;
 
     public void setup() {
         // code to load Hibernate Session factory
@@ -78,6 +78,7 @@ public class MovieDbController {
 
         movDat_parser dat_parser = new movDat_parser();
         List<movies> movies = query.list();
+        list = query.list();
         for (movies mov : movies) {
             dat_parser.setId(mov.getId());
             dat_parser.setCast(mov.getCast());
@@ -86,10 +87,11 @@ public class MovieDbController {
             dat_parser.setPlot(mov.getPlot());
             dat_parser.setRating(mov.getRating());
 
-            list.add(dat_parser);
+            //list.add(dat_parser);
 
             System.out.println("Cast is "+dat_parser.getCast()+"\n Title is "+dat_parser.getTitle());
         }
+
 
         session.close();
 

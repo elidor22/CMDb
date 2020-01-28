@@ -1,6 +1,8 @@
 package DatabaseConnection;
 
 
+import Utilities.movDat_parser;
+
 import javax.persistence.*;
 
 @Entity
@@ -62,5 +64,13 @@ public class movies {
 
     public void setRating(float rating) {
         this.rating = rating;
+    }
+
+    public int compareTo(movies mov)
+    {
+        int res=0;
+        if (rating < mov.rating) {res=-1;  }
+        if (rating > mov.rating){res=1;}
+        return res;
     }
 }
