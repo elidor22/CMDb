@@ -36,7 +36,7 @@ public class MovieSorter {
 
         db.setup();
         db.query("The punisher");
-        ArrayList<movDat_parser> parsers= new ArrayList<movDat_parser>();
+        ArrayList<movDat_parser> parsers;
         parsers=MovieDbController.list;
         ms.bubbleSort(parsers);
 

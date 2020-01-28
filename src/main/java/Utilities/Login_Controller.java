@@ -15,16 +15,16 @@ public class Login_Controller {
         boolean truepass = false;
         //Setup starts the Hibernate session, while query finds the user
         ctrl.setup();
-        ctrl.query(username);
+        //ctrl.query(username);
         truepass = encrypt.checkPassword(password, dat.getPassword());
 
         return truepass;
 
     }
 
-    public boolean validate_admin(String username){
+    public boolean validate_admin(String username, String user){
         ctrl.setup();
-        ctrl.query(username);
+        ctrl.query(username, user);
 
         boolean valid = dat.isIs_admin();
         System.out.println("Username is "+dat.getUsername());
@@ -35,7 +35,7 @@ public class Login_Controller {
     public static void main(String args[]){
         Login_Controller lg = new Login_Controller();
 
-       boolean validated= lg.validate_admin("user2");
+       boolean validated= lg.validate_admin("EV","el");
         System.out.println(validated);
     }
 

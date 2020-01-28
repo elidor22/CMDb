@@ -2,18 +2,11 @@ import com.azure.storage.blob.BlobClient;
 import com.azure.storage.blob.BlobContainerClient;
 import com.azure.storage.blob.BlobServiceClient;
 import com.azure.storage.blob.BlobServiceClientBuilder;
-import com.azure.storage.blob.implementation.util.BlobHeadersAndQueryParameters;
 import com.azure.storage.blob.models.BlobHttpHeaders;
-import com.azure.storage.blob.models.BlobProperties;
-import com.azure.storage.blob.models.BlockBlobItem;
-import jdk.jfr.ContentType;
-
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.net.http.HttpHeaders;
 
-public class blob_test {
+
+public class fileUploader {
 
     public static void main(String args[]) throws IOException {
         String connectStr = "DefaultEndpointsProtocol=https;AccountName=cmdbcit;AccountKey=4CMZ33uOXJJDOTh+F2qWrp+0xsdhuUH/UWh5AJmLXO6116wlOtmILtGVuDWtwl8V2FLtkKGWmX/rlVcKOTSRlA==;EndpointSuffix=core.windows.net";

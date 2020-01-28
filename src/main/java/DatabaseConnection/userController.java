@@ -55,23 +55,24 @@ public class userController {
         session.close();
     }
 
-    public void query(String username){
-        String hql = "from users where username like :keyword";
+    public void query(String username, String user){
+        String hql = "from users where username like:keyword and user like:user";
         Session session = sessionFactory.openSession();
         String keyword = username;
         Query query = session.createQuery(hql);
-        query.setParameter("keyword", "%" + keyword + "%");
+        query.setParameter("keyword",  "%"+ keyword + "%");
+        query.setParameter("user","%"+user+"%");
 
         usrDat_parser dat_parser = new usrDat_parser();
         List<users> usr = query.list();
-        for (users user : usr) {
+        for (users usr1 : usr) {
            // System.out.println("Username " + user.getUsername());
            // System.out.println("Password " + user.getPassword());
            // System.out.println("Is admin " + user.isIs_admin());
-            dat_parser.setId(user.getId());
-            dat_parser.setUsername(user.getUsername());
-            dat_parser.setPassword(user.getPassword());
-            dat_parser.setIs_admin(user.isIs_admin());
+            dat_parser.setId(usr1.getId());
+            dat_parser.setUsername(usr1.getUsername());
+            dat_parser.setPassword(usr1.getPassword());
+            dat_parser.setIs_admin(usr1.isIs_admin());
 
         }
 
@@ -105,7 +106,7 @@ public class userController {
         userController ctrl = new userController();
         ctrl.setup();
         //ctrl.create("User55", "hashed_one");
-        ctrl.query("EV");
+        //ctrl.query("EV");
        // ctrl.update("EV","saltednow",true);
         //ctrl.read();
 

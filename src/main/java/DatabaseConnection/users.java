@@ -9,7 +9,7 @@ public class users {
     private String username;
     private String password;
     private boolean is_admin;
-
+    private String user;
 
 
     @Id
@@ -45,5 +45,13 @@ public class users {
 
     public void setIs_admin(boolean is_admin) {
         this.is_admin = is_admin;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
     }
 }
