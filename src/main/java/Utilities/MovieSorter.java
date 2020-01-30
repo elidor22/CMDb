@@ -9,7 +9,9 @@ import DatabaseConnection.movies;
 
 public class MovieSorter {
     int pass;
-    public  void bubbleSort(List<movies> list) {
+    MovieDbController db = new MovieDbController();
+    public List<movies> ls;
+    public  List bubbleSort(List<movies> list) {
         movies temp;
 
         for (int i = 0; i < list.size(); i++) {
@@ -21,7 +23,7 @@ public class MovieSorter {
                     temp = list.get(j);
                     list.set(i, list.get(j + 1));
                     list.set(j + 1, temp);
-
+                    ls = list;
                 }
             }
             pass++;
@@ -29,23 +31,14 @@ public class MovieSorter {
                 break;
 
         }
+    return list;
 
     }
 
-    public static void main(String args[]){
-        MovieSorter ms = new MovieSorter();
-        movies parser = new movies();
-        MovieDbController db = new MovieDbController();
 
-        db.setup();
-        db.query("The punisher");
-        List<movies> parsers;
-        parsers=db.list;
-        ms.bubbleSort(parsers);
-        Collections.reverse(parsers);
-        parser = parsers.get(1);
-        System.out.println(parser.getRating()+"Plot is "+parser.getPlot());
-
-
+    public List sorted(List<movies> list){
+        bubbleSort(list);
+        Collections.reverse(list);
+        return list;
     }
 }

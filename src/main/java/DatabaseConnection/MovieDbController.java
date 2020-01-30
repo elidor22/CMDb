@@ -1,5 +1,6 @@
 package DatabaseConnection;
 
+import Utilities.MovieSorter;
 import Utilities.movDat_parser;
 import Utilities.usrDat_parser;
 import org.hibernate.Session;
@@ -78,7 +79,8 @@ public class MovieDbController {
 
         movDat_parser dat_parser = new movDat_parser();
         List<movies> movies = query.list();
-        list = query.list();
+        MovieSorter sorter = new MovieSorter();
+        list = sorter.sorted(movies);
         for (movies mov : movies) {
             dat_parser.setId(mov.getId());
             dat_parser.setCast(mov.getCast());
@@ -103,7 +105,7 @@ public class MovieDbController {
         MovieDbController movieDbController = new MovieDbController();
         movieDbController.setup();
         //movieDbController.read();
-        movieDbController.query("The punisher");
+       // movieDbController.query("The punisher");
         //Just example data to test code functionality
        //dbTest.create("The punisher", "Marvel Entertainment", "JOhn Bernthal", "A guy getting revenge,", 9.17f);
 
