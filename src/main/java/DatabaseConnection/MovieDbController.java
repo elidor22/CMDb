@@ -86,10 +86,9 @@ public class MovieDbController {
             dat_parser.setDirector(mov.getDirector());
             dat_parser.setPlot(mov.getPlot());
             dat_parser.setRating(mov.getRating());
+            dat_parser.setCoverURL(mov.getCoverURL());
 
-            //list.add(dat_parser);
-
-            System.out.println("Cast is "+dat_parser.getCast()+"\n Title is "+dat_parser.getTitle());
+            System.out.println("Cast is "+dat_parser.getCast()+"\n Title is "+dat_parser.getTitle()+"\n Cover url is:  "+dat_parser.getCoverURL());
         }
 
 

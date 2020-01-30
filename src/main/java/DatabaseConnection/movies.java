@@ -14,6 +14,7 @@ public class movies {
     private String cast;
     private String plot;
     private float rating;
+    private String coverURL;
 
     @Id
     @Column(name = "movie_id")
@@ -65,6 +66,13 @@ public class movies {
     public void setRating(float rating) {
         this.rating = rating;
     }
+    public String getCoverURL() {
+        return coverURL;
+    }
+
+    public void setCoverURL(String coverURL) {
+        this.coverURL = coverURL;
+    }
 
     public int compareTo(movies mov)
     {
@@ -73,4 +81,6 @@ public class movies {
         if (rating > mov.rating){res=1;}
         return res;
     }
+
+
 }

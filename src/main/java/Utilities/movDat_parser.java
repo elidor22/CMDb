@@ -10,8 +10,7 @@ public class movDat_parser {
     private static String cast;
     private static String plot;
     private static float rating;
-
-
+    private String coverURL;
 
 
 
@@ -69,5 +68,13 @@ public class movDat_parser {
         if (rating < dat_parser.rating) {res=-1;  }
         if (rating > dat_parser.rating){res=1;}
         return res;
+    }
+
+    public String getCoverURL() {
+        return coverURL;
+    }
+
+    public void setCoverURL(String coverURL) {
+        this.coverURL = coverURL;
     }
 }

@@ -20,8 +20,8 @@ public class fileUploader {
 
 // Create the container and return a container client object
         BlobContainerClient containerClient = blobServiceClient.getBlobContainerClient(containerName);
-        String localPath = "/home/elidor/Downloads/nbcu-61105127-Full-Image_GalleryBackground-en-US-1483994507952._SX1080_.jpg";
-        String fileName = "shawnofthedeaddd"+".jpg";
+        String localPath = "/home/elidor/Downloads/the_punisher.jpg";
+        String fileName = "the_punisher.jpg";
        // File localFile = new File(localPath + fileName);
 
 // Get a reference to a blob
