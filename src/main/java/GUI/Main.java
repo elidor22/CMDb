@@ -29,7 +29,7 @@ public class Main  {
     List<movies> ls;
     MovieSorter sorter;
     JFrame f = new JFrame();
-    users usr = new users();
+    List<users> usr ;
     userController ctrl = new userController();
     Login_Controller logctrl = new Login_Controller();
     usrDat_parser parser = new usrDat_parser();
@@ -61,9 +61,9 @@ public class Main  {
 
   //panel2
    JPanel p2 = new JPanel();
-   JTextField user;
-   JTextField username;
-   JPasswordField password;
+   JTextField user = new JTextField();
+   JTextField username=new JTextField();
+   JPasswordField password= new JPasswordField();
    JButton loginConfirm;
    JLabel userL;
    JLabel usernameL;
@@ -319,17 +319,21 @@ login();
 
     }
 //TODO:Fix login
+boolean validated;
    void login(){
+
         loginConfirm.addActionListener(new ActionListener() {
+
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
+
                 ctrl.setup();
-                ctrl.query(user.getText(), username.getText());
+                ctrl.query(username.getText(), user.getText());
+                usr=ctrl.usercl;
                 //Validate if the user information is valid in order to register it
-                boolean validated;
-                validated = encrypt.checkPassword(password.getText(), parser.getPassword());
-                if (validated)
-                    JOptionPane.showMessageDialog(null, "Congratulations for logging in" + usr.getUsername());
+                validated = logctrl.validate_login(password.getText(), parser.getPassword());
+
+
 
             }
         });

@@ -12,7 +12,7 @@ import java.util.List;
 import Utilities.usrDat_parser;
 public class userController {
     SessionFactory sessionFactory;
-
+    public List<users> usercl;
 
     public void setup() {
         // code to load Hibernate Session factory
@@ -64,6 +64,7 @@ public class userController {
         query.setParameter("user","%"+user+"%");
 
         usrDat_parser dat_parser = new usrDat_parser();
+        usercl=query.list();
         List<users> usr = query.list();
         for (users usr1 : usr) {
            // System.out.println("Username " + user.getUsername());
