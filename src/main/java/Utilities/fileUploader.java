@@ -1,3 +1,5 @@
+package Utilities;
+
 import com.azure.storage.blob.BlobClient;
 import com.azure.storage.blob.BlobContainerClient;
 import com.azure.storage.blob.BlobServiceClient;
@@ -8,7 +10,9 @@ import java.io.IOException;
 
 public class fileUploader {
 
-    public static void main(String args[]) throws IOException {
+
+
+   public void upload(String path, String name){
         String connectStr = "DefaultEndpointsProtocol=https;AccountName=cmdbcit;AccountKey=4CMZ33uOXJJDOTh+F2qWrp+0xsdhuUH/UWh5AJmLXO6116wlOtmILtGVuDWtwl8V2FLtkKGWmX/rlVcKOTSRlA==;EndpointSuffix=core.windows.net";
 
 
@@ -20,9 +24,9 @@ public class fileUploader {
 
 // Create the container and return a container client object
         BlobContainerClient containerClient = blobServiceClient.getBlobContainerClient(containerName);
-        String localPath = "/home/elidor/Downloads/the_punisher.jpg";
-        String fileName = "the_punisher.jpg";
-       // File localFile = new File(localPath + fileName);
+        String localPath = path;
+        String fileName = name;
+        // File localFile = new File(localPath + fileName);
 
 // Get a reference to a blob
         BlobClient blobClient = containerClient.getBlobClient(fileName);
@@ -36,6 +40,7 @@ public class fileUploader {
 
         String uri = blobClient.getBlobUrl();
         System.out.println(uri);
+
     }
 
 }

@@ -17,12 +17,23 @@ import java.util.List;
 //Clases imported to get the saved data
 import DatabaseConnection.MovieDbController;
 import DatabaseConnection.movies;
+import Utilities.Encryption_Provider;
 import Utilities.MovieSorter;
+import DatabaseConnection.users;
+import DatabaseConnection.userController;
+import Utilities.Login_Controller;
+import Utilities.usrDat_parser;
+import Utilities.fileUploader;
 public class Main  {
     movies movies = new movies();
     List<movies> ls;
     MovieSorter sorter;
     JFrame f = new JFrame();
+    users usr = new users();
+    userController ctrl = new userController();
+    Login_Controller logctrl = new Login_Controller();
+    usrDat_parser parser = new usrDat_parser();
+    Encryption_Provider encrypt = new Encryption_Provider();
 
   //panel1
   JPanel p1= new JPanel();
@@ -57,7 +68,7 @@ public class Main  {
    JLabel userL;
    JLabel usernameL;
    JLabel passwordL;
-   JButton back;
+   JButton back = new JButton("Back");
 
 
    //panel3
@@ -139,7 +150,7 @@ public Main() throws IOException {
     p1.setSize(1500,950);
     p1.setLayout(null);
     p1.setVisible(true);
-
+    p2.setVisible(false);
     //panel2
 
 
@@ -168,6 +179,14 @@ public Main() throws IOException {
         }
     });
 
+        back.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                p2.setVisible(false);
+                p1.setVisible(true);
+            }
+        });
+        //login();
     }
 
 void panel2(){
@@ -213,6 +232,8 @@ void panel2(){
     p1.setVisible(false);
     p2.setVisible(true);
 
+    loginpanel();
+    loginController();
 
 }
 
@@ -248,6 +269,7 @@ void movie_NavigatorButtons(){
     next.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
+            upload();
             int next=1;
         if(ls.size()>1&&next<=ls.size()-1){
 
@@ -289,5 +311,37 @@ void movie_NavigatorButtons(){
     });
 
     }
+
+    void loginController(){
+
+
+login();
+
+    }
+//TODO:Fix login
+   void login(){
+        loginConfirm.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                ctrl.setup();
+                ctrl.query(user.getText(), username.getText());
+                //Validate if the user information is valid in order to register it
+                boolean validated;
+                validated = encrypt.checkPassword(password.getText(), parser.getPassword());
+                if (validated)
+                    JOptionPane.showMessageDialog(null, "Congratulations for logging in" + usr.getUsername());
+
+            }
+        });
+
+    }
+
+
+    void upload(){
+
+    FileChooser fileChooser= new FileChooser();
+    fileChooser.choose();
+    }
+
 
 }

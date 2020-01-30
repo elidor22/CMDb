@@ -10,13 +10,14 @@ public class Login_Controller {
     public String username = "EV";
 
 
-    public boolean validate_login(String username, String password){
+    public boolean validate_login( String password, String saltedpass){
 
         boolean truepass = false;
         //Setup starts the Hibernate session, while query finds the user
-        ctrl.setup();
-        //ctrl.query(username);
-        truepass = encrypt.checkPassword(password, dat.getPassword());
+        //ctrl.setup();
+       // ctrl.query(user, username);
+        truepass = encrypt.checkPassword(password, saltedpass);
+        System.out.println(truepass);
 
         return truepass;
 

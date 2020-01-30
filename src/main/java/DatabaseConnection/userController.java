@@ -107,7 +107,7 @@ public class userController {
         ctrl.setup();
         //ctrl.create("User55", "hashed_one");
         //ctrl.query("EV");
-       // ctrl.update("EV","saltednow",true);
+        ctrl.update("EV","saltednow",true);
         //ctrl.read();
 
     }
