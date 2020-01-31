@@ -10,6 +10,7 @@ import java.io.IOException;
 
 public class fileUploader {
 
+    public static String url;
 
 
    public void upload(String path, String name){
@@ -39,6 +40,7 @@ public class fileUploader {
         blobClient.setHttpHeaders(hd);
 
         String uri = blobClient.getBlobUrl();
+        url = uri;
         System.out.println(uri);
 
     }

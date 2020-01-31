@@ -1,8 +1,6 @@
 package DatabaseConnection;
 
 
-import Utilities.movDat_parser;
-
 import javax.persistence.*;
 
 @Entity

@@ -1,8 +1,6 @@
 package DatabaseConnection;
 
 import Utilities.MovieSorter;
-import Utilities.movDat_parser;
-import Utilities.usrDat_parser;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
@@ -10,10 +8,7 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.query.Query;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import Utilities.movDat_parser ;
 
 public class MovieDbController {
 
@@ -32,7 +27,7 @@ public class MovieDbController {
         }
     }
 
-    protected void exit() {
+    public void exit() {
         // code to close Hibernate Session factory
         sessionFactory.close();
     }
@@ -52,7 +47,7 @@ public class MovieDbController {
     }
 
 
-    protected void create(String title, String author,String cast, String plot, float rating) {
+    public void create(String title, String author,String cast, String plot, float rating, String coverUrl) {
         // code to save a book
         movies movies = new movies();
         movies.setTitle(title);
@@ -60,6 +55,7 @@ public class MovieDbController {
         movies.setCast(cast);
         movies.setPlot(plot);
         movies.setRating(rating);
+        movies.setCoverURL(coverUrl);
 
 
         Session session = sessionFactory.openSession();
@@ -77,21 +73,10 @@ public class MovieDbController {
         Query query = session.createQuery(hql);
         query.setParameter("keyword", "%" + keyword + "%");
 
-        movDat_parser dat_parser = new movDat_parser();
         List<movies> movies = query.list();
         MovieSorter sorter = new MovieSorter();
         list = sorter.sorted(movies);
-        for (movies mov : movies) {
-            dat_parser.setId(mov.getId());
-            dat_parser.setCast(mov.getCast());
-            dat_parser.setTitle(mov.getTitle());
-            dat_parser.setDirector(mov.getDirector());
-            dat_parser.setPlot(mov.getPlot());
-            dat_parser.setRating(mov.getRating());
-            dat_parser.setCoverURL(mov.getCoverURL());
 
-            System.out.println("Cast is "+dat_parser.getCast()+"\n Title is "+dat_parser.getTitle()+"\n Cover url is:  "+dat_parser.getCoverURL());
-        }
 
 
         session.close();

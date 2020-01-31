@@ -1,13 +1,11 @@
 package GUI;
 
-import javax.imageio.ImageIO;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.font.TextAttribute;
-import java.awt.image.BufferedImage;
-import java.io.File;
+
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -16,25 +14,19 @@ import java.util.List;
 
 
 //Clases imported to get the saved data
-import DatabaseConnection.MovieDbController;
-import DatabaseConnection.movies;
-import Utilities.Encryption_Provider;
-import Utilities.MovieSorter;
-import DatabaseConnection.users;
-import DatabaseConnection.userController;
-import Utilities.Login_Controller;
-import Utilities.usrDat_parser;
-import Utilities.fileUploader;
+import DatabaseConnection.*;
+import Utilities.*;
+
 public class Main  {
     movies movies = new movies();
     List<movies> ls;
-    MovieSorter sorter;
     JFrame f = new JFrame();
     List<users> usr ;
     userController ctrl = new userController();
     Login_Controller logctrl = new Login_Controller();
     usrDat_parser parser = new usrDat_parser();
-    Encryption_Provider encrypt = new Encryption_Provider();
+    MovieDbController db = new MovieDbController();
+    boolean validated;
 
   //panel1
   JPanel p1= new JPanel();
@@ -73,7 +65,19 @@ public class Main  {
 
 
    //panel3
-
+   JPanel p3 = new JPanel();
+    JLabel p3Title;
+    JLabel p3Cast;
+    JLabel p3Director;
+    JLabel p3Rating;
+    JLabel p3Plot;
+    JTextField titleField;
+    JTextArea castArea;
+    JTextField directorField;
+    JTextField ratingField;
+    JTextArea plotArea;
+    JButton p3Upload;
+    JButton p3Back;
 
 public Main() throws IOException {
 
@@ -152,12 +156,10 @@ public Main() throws IOException {
     p1.add(prev);
     p1.setSize(1500,950);
     p1.setLayout(null);
-    p1.setVisible(true);
+    p1.setVisible(false);
     p2.setVisible(false);
+    panel3();
     //panel2
-
-
-
     loginpanel();
     search();
    //Jframe
@@ -332,7 +334,7 @@ login();
 
     }
 
-boolean validated;
+
    void login(){
 
         loginConfirm.addActionListener(new ActionListener() {
@@ -371,4 +373,88 @@ boolean validated;
         movieIcon.setIcon(image);
     }
 
+    void panel3(){
+        p3Title = new JLabel("Movie title:");
+        p3Title.setBounds(150,150,150,30);
+
+        p3Cast = new JLabel("Cast:");
+        p3Cast.setBounds(150,190,150,30);
+
+        p3Director = new JLabel("Director:");
+        p3Director.setBounds(150,300,150,30);
+
+        p3Rating = new JLabel("Rating:");
+        p3Rating.setBounds(150,340,150,30);
+
+        p3Plot = new JLabel("Plot:");
+        p3Plot.setBounds(150,380,150,30);
+
+        titleField = new JTextField();
+        titleField.setBounds(400,150,250,30);
+
+        castArea = new JTextArea();
+        castArea.setBounds(400,190,250,100);
+
+        directorField = new JTextField();
+        directorField.setBounds(400,300,250,30);
+
+        ratingField = new JTextField();
+        ratingField.setBounds(400,340,250,30);
+
+        plotArea = new JTextArea();
+        plotArea.setBounds(400,380,250,300);
+
+        p3Upload = new JButton("Upload");
+        p3Upload.setBounds(700,200,200,30);
+
+        p3Back = new JButton("Next");
+        p3Back.setBounds(700,240,200,30);
+
+
+
+
+        p3.add(p3Title);
+        p3.add(p3Cast);
+        p3.add(p3Director);
+        p3.add(p3Rating);
+        p3.add(p3Plot);
+        p3.add(titleField);
+        p3.add(castArea);
+        p3.add(directorField);
+        p3.add(ratingField);
+        p3.add(plotArea);
+        p3.add(p3Upload);
+        p3.add(p3Back);
+        p3.setBounds(100,100,1300,750);
+        p3.setBackground(Color.gray);
+        p3.setLayout(null);
+        p3.setVisible(true);
+        f.add(p3);
+
+        addmovies();
+    }
+
+
+    void addmovies(){
+    p3Upload.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent actionEvent) {
+        upload();
+            db.setup();
+            String rat = ratingField.getText();
+            float rating = Float.valueOf(rat);
+        db.create(titleField.getText(),directorField.getText(),p3Cast.getText(),plotArea.getText(),rating,fileUploader.url);
+
+        }
+    });
+
+    p3Back.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent actionEvent) {
+            p3.setVisible(false);
+            p1.setVisible(true);
+        }
+    });
+
+    }
 }
