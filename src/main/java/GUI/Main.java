@@ -134,7 +134,7 @@ public Main() throws IOException {
 
     searchB = new JButton("Search");  //button for searching
     searchB.setBounds(710,40,100,30);
-
+    
 
 
     p1.add(search);
@@ -333,11 +333,15 @@ boolean validated;
                 ctrl.query(username.getText(), user.getText());
                 usr=ctrl.usercl;
                 //Validate if the user information is valid in order to register it
-                validated = logctrl.validate_login(password.getText(), parser.getPassword());
 
-
-
+                if(logctrl.validate_login(password.getText(), parser.getPassword())){
+                    JOptionPane.showMessageDialog(f,"You're logged in "+parser.getUsername());
+                    validated=true;
+                }
+                    else
+                JOptionPane.showMessageDialog(f, "Try to enter a valid username/password");
             }
+
         });
 
     }
