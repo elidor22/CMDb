@@ -31,6 +31,7 @@ public class Main  {
   //panel1
   JPanel p1= new JPanel();
   JButton searchB;
+  JButton addMovie = new JButton("Add new movie");
   JTextField search;
   JButton next;
   JButton prev;
@@ -76,8 +77,8 @@ public class Main  {
     JTextField directorField;
     JTextField ratingField;
     JTextArea plotArea;
-    JButton p3Upload;
-    JButton p3Back;
+    JButton p3Upload = new JButton();
+    JButton p3Back= new JButton();
 
 public Main() throws IOException {
 
@@ -134,12 +135,13 @@ public Main() throws IOException {
     login.setBounds(1220,250,200,40);
     login.setFont(f30);
 
+    addMovie.setBounds(1220,350,200,40);
+
     search = new JTextField();   // movie name search field
     search.setBounds(150,40,550,32);
 
     searchB = new JButton("Search");  //button for searching
     searchB.setBounds(710,40,100,30);
-
 
 
     p1.add(search);
@@ -156,12 +158,13 @@ public Main() throws IOException {
     p1.add(prev);
     p1.setSize(1500,950);
     p1.setLayout(null);
-    p1.setVisible(false);
+    p1.setVisible(true);
     p2.setVisible(false);
-    panel3();
+    //panel3();
     //panel2
     loginpanel();
     search();
+    addmovies();
    //Jframe
     f.setSize(1500,950);
     f.setLayout(null);
@@ -349,7 +352,8 @@ login();
 
                 if(logctrl.validate_login(password.getText(), parser.getPassword())){
                     JOptionPane.showMessageDialog(f,"You're logged in "+parser.getUsername());
-                    validated=true;
+                    localUsername.setText(parser.getUsername());
+                    p1.add(addMovie);
                 }
                     else
                 JOptionPane.showMessageDialog(f, "Try to enter a valid username/password");
@@ -435,7 +439,16 @@ login();
     }
 
 
+
     void addmovies(){
+
+        addMovie.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+               p1.setVisible(false);
+               panel3();
+            }
+        });
     p3Upload.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {

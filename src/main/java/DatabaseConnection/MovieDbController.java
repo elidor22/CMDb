@@ -77,8 +77,6 @@ public class MovieDbController {
         MovieSorter sorter = new MovieSorter();
         list = sorter.sorted(movies);
 
-
-
         session.close();
 
 
