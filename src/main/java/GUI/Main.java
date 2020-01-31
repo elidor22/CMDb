@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
 import java.util.List;
 
 
@@ -134,7 +135,7 @@ public Main() throws IOException {
 
     searchB = new JButton("Search");  //button for searching
     searchB.setBounds(710,40,100,30);
-    
+
 
 
     p1.add(search);
@@ -165,6 +166,16 @@ public Main() throws IOException {
     f.setVisible(true);
     f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     f.setResizable(false);
+    try {
+        URL url = new URL("http://www.google.com");
+        URLConnection connection = url.openConnection();
+        connection.connect();
+        JOptionPane.showMessageDialog(f,"You're connected and ready to go");
+    } catch (MalformedURLException e) {
+        JOptionPane.showMessageDialog(f,"Check your internet connection");
+    } catch (IOException e) {
+        JOptionPane.showMessageDialog(f,"Failed to connect to the internet");
+    }
 }
 
     public static void main(String[] args) throws IOException {
@@ -358,7 +369,6 @@ boolean validated;
         Image newImg = img.getScaledInstance(movieIcon.getWidth(), movieIcon.getHeight(),Image.SCALE_SMOOTH);
         ImageIcon image = new ImageIcon(newImg);
         movieIcon.setIcon(image);
-        //return image;
     }
 
 }
