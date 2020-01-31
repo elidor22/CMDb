@@ -112,8 +112,10 @@ public Main() throws IOException {
     localUsername.setFont(f35);
 
     movieIcon = new JLabel();   //movie icon link
-    movieIcon.setIcon(new ImageIcon(new URL("https://cmdbcit.blob.core.windows.net/cmdb/anchorman-2.jpg")));
     movieIcon.setBounds(100,100,580,500);
+   // movieIcon.setIcon(new ImageIcon(new URL("https://cmdbcit.blob.core.windows.net/cmdb2/Ghostbusters_logo.png")));
+    coverResizer("https://cmdbcit.blob.core.windows.net/cmdb2/the_punisher.jpg");
+
 
     next = new JButton("Next");  //next button
     next.setBounds(700,350,120,30);
@@ -254,7 +256,7 @@ void search(){
             rating.setText(String.valueOf(movies.getRating())+"/10");
             plot.setText(movies.getPlot());
             try {
-                movieIcon.setIcon(new ImageIcon(new URL(movies.getCoverURL())));
+                coverResizer(movies.getCoverURL());
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
@@ -269,7 +271,7 @@ void movie_NavigatorButtons(){
     next.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
-            upload();
+            //upload();
             int next=1;
         if(ls.size()>1&&next<=ls.size()-1){
 
@@ -281,7 +283,7 @@ void movie_NavigatorButtons(){
             plot.setText(movies.getPlot());
             next++;
             try {
-                movieIcon.setIcon(new ImageIcon(new URL(movies.getCoverURL())));
+                coverResizer(movies.getCoverURL());
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
@@ -302,7 +304,7 @@ void movie_NavigatorButtons(){
                 plot.setText(movies.getPlot());
                 prev--;
                 try {
-                    movieIcon.setIcon(new ImageIcon(new URL(movies.getCoverURL())));
+                    coverResizer(movies.getCoverURL());
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 }
@@ -318,7 +320,7 @@ void movie_NavigatorButtons(){
 login();
 
     }
-//TODO:Fix login
+
 boolean validated;
    void login(){
 
@@ -346,6 +348,13 @@ boolean validated;
     FileChooser fileChooser= new FileChooser();
     fileChooser.choose();
     }
-
+    void coverResizer(String URL) throws MalformedURLException {
+        ImageIcon MI = new ImageIcon(new URL(URL));
+        Image img = MI.getImage();
+        Image newImg = img.getScaledInstance(movieIcon.getWidth(), movieIcon.getHeight(),Image.SCALE_SMOOTH);
+        ImageIcon image = new ImageIcon(newImg);
+        movieIcon.setIcon(image);
+        //return image;
+    }
 
 }
