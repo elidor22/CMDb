@@ -7,7 +7,7 @@ public class usrDat_parser {
     private static String username;
     private static String password;
     private static boolean is_admin;
-
+    private String url_Icon;
 
     public int getId() {
         return id;
@@ -41,4 +41,11 @@ public class usrDat_parser {
         this.is_admin = is_admin;
     }
 
+    public String getUrl_Icon() {
+        return url_Icon;
+    }
+
+    public void setUrl_Icon(String url_Icon) {
+        this.url_Icon = url_Icon;
+    }
 }

@@ -10,7 +10,7 @@ public class users {
     private String password;
     private boolean is_admin;
     private String user;
-
+    private String url_Icon;
 
     @Id
     @Column(name = "id")
@@ -53,5 +53,13 @@ public class users {
 
     public void setUser(String user) {
         this.user = user;
+    }
+
+    public String getUrl_Icon() {
+        return url_Icon;
+    }
+
+    public void setUrl_Icon(String url_Icon) {
+        this.url_Icon = url_Icon;
     }
 }

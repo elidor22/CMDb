@@ -26,7 +26,7 @@ public class Main  {
     Login_Controller logctrl = new Login_Controller();
     usrDat_parser parser = new usrDat_parser();
     MovieDbController db = new MovieDbController();
-    boolean validated;
+    boolean validated=false;
 
   //panel1
   JPanel p1= new JPanel();
@@ -43,7 +43,7 @@ public class Main  {
   JLabel movieIcon;
   JButton login;
   JLabel localUsername;
-  JLabel userIcon;
+  JLabel userIcon = new JLabel();
   JButton createUser;
     Font titleF = new Font(Font.MONOSPACED,Font.PLAIN,50);
     Font castF = new Font(Font.MONOSPACED,Font.PLAIN,24);
@@ -135,8 +135,10 @@ public Main() throws IOException {
     prev.setFont(serif20);
 
     //TODO: userIcon
-    //userIcon = new JLabel();
-    //userIcon.setBounds(1220,40,250,200);
+
+    userIcon.setBounds(820,600,250,200);
+
+
 
 
     login = new JButton("Log in");   // panel 1 log in button
@@ -349,15 +351,10 @@ void movie_NavigatorButtons(){
 
     }
 
-    void loginController(){
 
 
-login();
 
-    }
-
-
-   void login(){
+   void loginController(){
 
         loginConfirm.addActionListener(new ActionListener() {
 
@@ -373,6 +370,12 @@ login();
                     JOptionPane.showMessageDialog(f,"You're logged in "+parser.getUsername());
                     localUsername.setText(parser.getUsername());
                     p1.add(addMovie);
+                    p1.add(userIcon);
+                    try {
+                        setUsericon();
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    }
                 }
                     else
                 JOptionPane.showMessageDialog(f, "Try to enter a valid username/password");
@@ -488,5 +491,9 @@ login();
         }
     });
 
+    }
+
+    void setUsericon() throws MalformedURLException {
+    userIcon.setIcon(new ImageIcon(new URL(parser.getUrl_Icon())));
     }
 }
