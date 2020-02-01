@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Table(name = "favourites")
 public class favourites {
     private int mov_id;
-    private int usr_id;
+    private String usr_id;
     private int navId;
 
 
@@ -19,11 +19,11 @@ public class favourites {
         this.mov_id = mov_id;
     }
 
-    public int getUsr_id() {
+    public String getUsr_id() {
         return usr_id;
     }
 
-    public void setUsr_id(int usr_id) {
+    public void setUsr_id(String usr_id) {
         this.usr_id = usr_id;
     }
 

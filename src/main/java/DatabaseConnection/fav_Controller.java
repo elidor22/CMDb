@@ -5,6 +5,9 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.query.Query;
+
+import java.util.List;
 
 public class fav_Controller {
     SessionFactory sessionFactory;
@@ -20,7 +23,7 @@ public class fav_Controller {
         }
     }
 
-    public void add(int usrId, int movId){
+    public void add(String usrId, int movId){
     favourites favourites = new favourites();
 
     favourites.setMov_id(movId);
@@ -35,10 +38,22 @@ public class fav_Controller {
         session.close();
     }
 
+    public void query(String usrId){
+        String hql = "from favourites where usr_id = usrId";
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery(hql);
+        query.setParameter("usrId", "%" + usrId + "%");
+        List<favourites> movies = query.list();
+        favourites fv = new favourites();
+        fv = movies.get(0);
+        System.out.println(fv.getMov_id());
+    }
+
     public static void main(String [] args){
         fav_Controller ctrl = new fav_Controller();
         ctrl.setup();
-        ctrl.add(1,2);
+        //ctrl.add(1,2);
+        ctrl.query(1+"");
 
     }
 }

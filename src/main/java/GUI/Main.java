@@ -26,7 +26,7 @@ public class Main  {
     Login_Controller logctrl = new Login_Controller();
     usrDat_parser parser = new usrDat_parser();
     MovieDbController db = new MovieDbController();
-    boolean validated=false;
+    boolean validated;
 
   //panel1
   JPanel p1= new JPanel();
@@ -43,7 +43,7 @@ public class Main  {
   JLabel movieIcon;
   JButton login;
   JLabel localUsername;
-  JLabel userIcon = new JLabel();
+  JLabel userIcon;
   JButton createUser;
     Font titleF = new Font(Font.MONOSPACED,Font.PLAIN,50);
     Font castF = new Font(Font.MONOSPACED,Font.PLAIN,24);
@@ -135,11 +135,13 @@ public Main() throws IOException {
     prev.setFont(serif20);
 
     //TODO: userIcon
+    if(validated) {
 
-    userIcon.setBounds(820,600,250,200);
-
-
-
+        userIcon = new JLabel();
+        userIcon.setBounds(1220,40,250,200);
+        setUsericon();
+        p1.add(userIcon);
+    }
 
     login = new JButton("Log in");   // panel 1 log in button
     login.setBounds(1220,250,200,40);
@@ -370,12 +372,7 @@ void movie_NavigatorButtons(){
                     JOptionPane.showMessageDialog(f,"You're logged in "+parser.getUsername());
                     localUsername.setText(parser.getUsername());
                     p1.add(addMovie);
-                    p1.add(userIcon);
-                    try {
-                        setUsericon();
-                    } catch (MalformedURLException e) {
-                        e.printStackTrace();
-                    }
+                    validated = true;
                 }
                     else
                 JOptionPane.showMessageDialog(f, "Try to enter a valid username/password");
@@ -394,7 +391,7 @@ void movie_NavigatorButtons(){
     void coverResizer(String URL) throws MalformedURLException {
         ImageIcon MI = new ImageIcon(new URL(URL));
         Image img = MI.getImage();
-        Image newImg = img.getScaledInstance(movieIcon.getWidth(), movieIcon.getHeight(),Image.SCALE_SMOOTH);
+        Image newImg = img.getScaledInstance(455, movieIcon.getHeight(),Image.SCALE_AREA_AVERAGING);
         ImageIcon image = new ImageIcon(newImg);
         movieIcon.setIcon(image);
     }
