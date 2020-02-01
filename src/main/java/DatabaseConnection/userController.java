@@ -36,7 +36,7 @@ public class userController {
         session.close();
 
     }
-    protected void create(String username, String password) {
+    public void create(String user,String username, String password) {
         // code to save a book
         users usr = new users();
         Encryption_Provider encrypt = new Encryption_Provider();
@@ -44,6 +44,7 @@ public class userController {
 
         usr.setUsername(username);
         usr.setPassword(pass);
+        usr.setUser(user);
 
 
         Session session = sessionFactory.openSession();

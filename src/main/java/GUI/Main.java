@@ -24,6 +24,7 @@ public class Main  {
     List<users> usr ;
     userController ctrl = new userController();
     Login_Controller logctrl = new Login_Controller();
+    Encryption_Provider encr = new Encryption_Provider();
     usrDat_parser parser = new usrDat_parser();
     MovieDbController db = new MovieDbController();
     boolean validated;
@@ -365,19 +366,27 @@ void movie_NavigatorButtons(){
 
                 ctrl.setup();
                 ctrl.query(username.getText(), user.getText());
-                usr=ctrl.usercl;
+                //usr=ctrl.usercl;
                 //Validate if the user information is valid in order to register it
 
                 if(logctrl.validate_login(password.getText(), parser.getPassword())){
                     JOptionPane.showMessageDialog(f,"You're logged in "+parser.getUsername());
                     localUsername.setText(parser.getUsername());
-                    p1.add(addMovie);
-                    validated = true;
+                    if(parser.isIs_admin())
+                        p1.add(addMovie);
+
                 }
-                    else
-                JOptionPane.showMessageDialog(f, "Try to enter a valid username/password");
+
+                //JOptionPane.showMessageDialog(f, "Try to enter a valid username/password "+ parser.getPassword() );
+
             }
 
+        });
+        createUser.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                createUser();
+            }
         });
 
     }
@@ -492,5 +501,11 @@ void movie_NavigatorButtons(){
 
     void setUsericon() throws MalformedURLException {
     userIcon.setIcon(new ImageIcon(new URL(parser.getUrl_Icon())));
+    }
+
+    void createUser(){
+    ctrl.setup();
+    ctrl.create(username.getText(), user.getText(), encr.hashPassword(password.getText()));
+
     }
 }
