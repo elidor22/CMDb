@@ -89,7 +89,7 @@ public class userController {
         Encryption_Provider encrypt = new Encryption_Provider();
         String pass = encrypt.hashPassword(password);
 
-        usr.setId(1);
+        usr.setId(13);
         usr.setUsername(username);
         usr.setPassword(pass);
         usr.setIs_admin(isAdmin);
@@ -109,7 +109,7 @@ public class userController {
         ctrl.setup();
         //ctrl.create("User55", "hashed_one");
         //ctrl.query("EV");
-        ctrl.update("EV","saltednow",true);
+        ctrl.update("Eminem","saltednow",true);
         //ctrl.read();
 
     }

@@ -376,8 +376,8 @@ void movie_NavigatorButtons(){
                         p1.add(addMovie);
 
                 }
-
-                //JOptionPane.showMessageDialog(f, "Try to enter a valid username/password "+ parser.getPassword() );
+                else
+                JOptionPane.showMessageDialog(f, "Try to enter a valid username/password "+ parser.getPassword() );
 
             }
 
@@ -505,7 +505,7 @@ void movie_NavigatorButtons(){
 
     void createUser(){
     ctrl.setup();
-    ctrl.create(username.getText(), user.getText(), encr.hashPassword(password.getText()));
+    ctrl.create(user.getText(), username.getText(), encr.hashPassword(password.getText()));
 
     }
 }
