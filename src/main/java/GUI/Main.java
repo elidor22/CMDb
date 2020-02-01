@@ -43,13 +43,16 @@ public class Main  {
   JLabel movieIcon;
   JButton login;
   JLabel localUsername;
-  Font titleF = new Font(Font.MONOSPACED,Font.PLAIN,50);
-  Font castF = new Font(Font.MONOSPACED,Font.PLAIN,25);
-  Font f30 = new Font(Font.MONOSPACED,Font.PLAIN,30);
-  Font plotF = new Font(Font.MONOSPACED,Font.PLAIN, 22);
-
-  Font f35 = new Font(Font.MONOSPACED, Font.PLAIN,35);
-
+  JLabel userIcon;
+  JButton createUser;
+    Font titleF = new Font(Font.MONOSPACED,Font.PLAIN,50);
+    Font castF = new Font(Font.MONOSPACED,Font.PLAIN,24);
+    Font f30 = new Font(Font.MONOSPACED,Font.PLAIN,30);
+    Font plotF = new Font(Font.MONOSPACED,Font.PLAIN, 20);
+    Font serif20 = new Font(Font.SERIF,Font.PLAIN,20);
+    Font f25 = new Font(Font.MONOSPACED,Font.PLAIN,25);
+    Font f35 = new Font(Font.MONOSPACED, Font.PLAIN,35);
+    Font serif18 = new Font(Font.SERIF,Font.PLAIN,18);
 
   //directorF, ratingF, p1UsernameF
 
@@ -87,11 +90,11 @@ public Main() throws IOException {
 
     //panel1
     title = new JLabel("Joker");   // movie title label
-    title.setBounds(700,170,150,50);
+    title.setBounds(80,40,400,50);
     title.setFont(titleF);
 
-    cast = new JTextArea("cast");     //cast information area
-    cast.setBounds(700,230,100,35);
+    cast = new JTextArea("feat:Joaquin Phoenix, Frances Conroy");     //cast information area
+    cast.setBounds(80,100,320,65);
     cast.setFont(castF);
     cast.setEditable(false);
     cast.setOpaque(false);
@@ -99,50 +102,56 @@ public Main() throws IOException {
     cast.setWrapStyleWord(true);
 
     director = new JLabel("Director:Todd Phillips");  //director name label
-    director.setBounds(700,270,400,35);
+    director.setBounds(80,175,400,35);
     director.setFont(f30);
 
     rating = new JLabel("Rating:8.6/10");         //rating label
-    rating.setBounds(700,310,260,40);
+    rating.setBounds(80,215,260,40);
     rating.setFont(f30);
 
     plot = new JTextArea("Forever alone in a crowd, failed comedian Arthur Fleck seeks connection as he walks the streets of Gotham City. Arthur wears two masks -- the one he paints for his day job as a clown, and the guise he projects in a futile attempt to feel like he's part of the world around him. Isolated, bullied and disregarded by society, Fleck begins a slow descent into madness as he transforms into the criminal mastermind known as the Joker.");
-    plot.setBounds(100,600,750,300);  //plot area
+    plot.setBounds(80,260,380,550);  //plot area
     plot.setFont(plotF);
     plot.setOpaque(false);
     plot.setLineWrap(true);
     plot.setWrapStyleWord(true);
 
     localUsername = new JLabel("Local Name");  // username on panel 1
-    localUsername.setBounds(1200,200,250,40);
-    localUsername.setFont(f35);
+    localUsername.setBounds(1220,200,250,40);
+    localUsername.setFont(f25);
 
     movieIcon = new JLabel();   //movie icon link
-    movieIcon.setBounds(100,100,580,500);
+    movieIcon.setBounds(500,107,620,500);
    // movieIcon.setIcon(new ImageIcon(new URL("https://cmdbcit.blob.core.windows.net/cmdb2/Ghostbusters_logo.png")));
-    coverResizer("https://cmdbcit.blob.core.windows.net/cmdb2/the_punisher.jpg");
+    coverResizer("https://comicfrontline.com/wp-content/uploads/2019/10/The-Joker.jpg");
 
 
     next = new JButton("Next");  //next button
-    next.setBounds(700,350,120,30);
-    next.setFont(castF);
+    next.setBounds(840,630,120,30);
+    next.setFont(serif20);
 
     prev = new JButton("Prev");  //previous button
-    prev.setBounds(700,390,120,30);
-    prev.setFont(castF);
+    prev.setBounds(690,630,120,30);
+    prev.setFont(serif20);
+
+    //TODO: userIcon
+    //userIcon = new JLabel();
+    //userIcon.setBounds(1220,40,250,200);
+
 
     login = new JButton("Log in");   // panel 1 log in button
     login.setBounds(1220,250,200,40);
-    login.setFont(f30);
+    login.setFont(serif20);
 
-    addMovie.setBounds(1220,350,200,40);
+    addMovie.setBounds(1220,300,200,40);
+    addMovie.setFont(serif20);
 
     search = new JTextField();   // movie name search field
-    search.setBounds(150,40,550,32);
+    search.setBounds(500,50,510,32);
 
     searchB = new JButton("Search");  //button for searching
-    searchB.setBounds(710,40,100,30);
-
+    searchB.setBounds(1020,50,100,30);
+    searchB.setFont(serif20);
 
     p1.add(search);
     p1.add(searchB);
@@ -156,7 +165,7 @@ public Main() throws IOException {
     p1.add(movieIcon);
     p1.add(next);
     p1.add(prev);
-    p1.setSize(1500,950);
+    p1.setSize(1500,780);
     p1.setLayout(null);
     p1.setVisible(true);
     p2.setVisible(false);
@@ -166,7 +175,7 @@ public Main() throws IOException {
     search();
     addmovies();
    //Jframe
-    f.setSize(1500,950);
+    f.setSize(1500,780);
     f.setLayout(null);
     f.setVisible(true);
     f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -210,32 +219,42 @@ public Main() throws IOException {
 void panel2(){
     f.add(p2);
     user = new JTextField();       // log in user
-    user.setBounds(200,40,200,40);
+    user.setBounds(200,40,220,40);
+    user.setFont(serif20);
 
     username = new JTextField();  // local user
-    username.setBounds(200,120,200,40);
+    username.setBounds(200,120,220,40);
+    username.setFont(serif20);
 
     password = new JPasswordField();   // password input field
-    password.setBounds(200,200,200,40);
+    password.setBounds(200,200,220,40);
+    password.setFont(serif20);
 
     userL = new JLabel("User");
-    userL.setBounds(50,40,180,40);
+    userL.setBounds(20,40,180,40);
     userL.setFont(f35);
 
     usernameL = new JLabel("Username");
-    usernameL.setBounds(10,120,180,40);
+    usernameL.setBounds(20,120,180,40);
     usernameL.setFont(f35);
 
     passwordL = new JLabel("Password");
-    passwordL.setBounds(10,200,180,40);
+    passwordL.setBounds(20,200,180,40);
     passwordL.setFont(f35);
 
+    createUser = new JButton("Create User");
+    createUser.setBounds(20,280,120,40);
+    createUser.setFont(serif18);
+
     loginConfirm = new JButton("Log in");  // panel 2 login button
-    loginConfirm.setBounds(150,280,150,40);
+    loginConfirm.setBounds(170,280,120,40);
+    loginConfirm.setFont(serif18);
 
     back = new JButton("Back");   //takes you to panel 1
     back.setBounds(320,280,100,40);
+    back.setFont(serif18);
 
+    p2.add(createUser);
     p2.add(loginConfirm);
     p2.add(userL);
     p2.add(usernameL);
