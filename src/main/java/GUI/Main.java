@@ -32,7 +32,7 @@ public class Main  {
   //panel1
   JPanel p1= new JPanel();
   JButton searchB;
-  JButton addMovie = new JButton("Add new movie");
+  JButton addMovie = new JButton("Upload movie");
   JTextField search;
   JButton next;
   JButton prev;
@@ -44,8 +44,8 @@ public class Main  {
   JLabel movieIcon;
   JButton login;
   JLabel localUsername;
-  JLabel userIcon;
-  JButton createUser;
+
+
     Font titleF = new Font(Font.MONOSPACED,Font.PLAIN,50);
     Font castF = new Font(Font.MONOSPACED,Font.PLAIN,24);
     Font f30 = new Font(Font.MONOSPACED,Font.PLAIN,30);
@@ -117,38 +117,34 @@ public Main() throws IOException {
     plot.setLineWrap(true);
     plot.setWrapStyleWord(true);
 
-    localUsername = new JLabel("Local Name");  // username on panel 1
-    localUsername.setBounds(1220,200,250,40);
-    localUsername.setFont(f25);
+
 
     movieIcon = new JLabel();   //movie icon link
-    movieIcon.setBounds(500,100,620,500);
+    movieIcon.setBounds(500,100,620,550);
    // movieIcon.setIcon(new ImageIcon(new URL("https://cmdbcit.blob.core.windows.net/cmdb2/Ghostbusters_logo.png")));
     coverResizer("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJKLiEyyz1Q9RC8EBYl3ijr3nuGeyO2ETmwy6Kdq0AQtD0elWD");
 
 
     next = new JButton("Next");  //next button
-    next.setBounds(750,630,110,30);
+    next.setBounds(750,670,110,30);
     next.setFont(serif20);
 
     prev = new JButton("Prev");  //previous button
-    prev.setBounds(600,630,110,30);
+    prev.setBounds(600,670,110,30);
     prev.setFont(serif20);
 
-    //TODO: userIcon
-    if(validated) {
 
-        userIcon = new JLabel();
-        userIcon.setBounds(1220,40,250,200);
-        setUsericon();
-        p1.add(userIcon);
-    }
+
+
+    localUsername = new JLabel("Local Name");  // username on panel 1
+    localUsername.setBounds(1000,40,250,40);
+    localUsername.setFont(f25);
 
     login = new JButton("Log in");   // panel 1 log in button
-    login.setBounds(1220,250,200,40);
+    login.setBounds(1000,90,150,40);
     login.setFont(serif20);
 
-    addMovie.setBounds(1220,300,200,40);
+    addMovie.setBounds(1000,140,150,40);
     addMovie.setFont(serif20);
 
     search = new JTextField();   // movie name search field
@@ -170,17 +166,18 @@ public Main() throws IOException {
     p1.add(movieIcon);
     p1.add(next);
     p1.add(prev);
-    p1.setSize(1500,780);
+    p1.setSize(1240,780);
     p1.setLayout(null);
     p1.setVisible(true);
     p2.setVisible(false);
-    //panel3();
+
+
     //panel2
     loginpanel();
     search();
     addmovies();
    //Jframe
-    f.setSize(1500,780);
+    f.setSize(1240,780);
     f.setLayout(null);
     f.setVisible(true);
     f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -247,9 +244,7 @@ void panel2(){
     passwordL.setBounds(20,200,180,40);
     passwordL.setFont(f35);
 
-    createUser = new JButton("Create User");
-    createUser.setBounds(20,280,120,40);
-    createUser.setFont(serif18);
+
 
     loginConfirm = new JButton("Log in");  // panel 2 login button
     loginConfirm.setBounds(170,280,120,40);
@@ -259,7 +254,7 @@ void panel2(){
     back.setBounds(320,280,100,40);
     back.setFont(serif18);
 
-    p2.add(createUser);
+
     p2.add(loginConfirm);
     p2.add(userL);
     p2.add(usernameL);
@@ -268,7 +263,7 @@ void panel2(){
     p2.add(password);
     p2.add(user);
     p2.add(back);
-    p2.setBounds(525,300,450,350);
+    p2.setBounds(385,215,450,350);
     p2.setBackground(Color.gray);
     p2.setLayout(null);
     p1.setVisible(false);
@@ -382,12 +377,7 @@ void movie_NavigatorButtons(){
             }
 
         });
-        createUser.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                createUser();
-            }
-        });
+
 
     }
 
@@ -408,18 +398,23 @@ void movie_NavigatorButtons(){
     void panel3(){
         p3Title = new JLabel("Movie title:");
         p3Title.setBounds(150,150,150,30);
+        p3Title.setFont(f25);
 
         p3Cast = new JLabel("Cast:");
         p3Cast.setBounds(150,190,150,30);
+        p3Cast.setFont(f25);
 
         p3Director = new JLabel("Director:");
         p3Director.setBounds(150,300,150,30);
+        p3Director.setFont(f25);
 
         p3Rating = new JLabel("Rating:");
         p3Rating.setBounds(150,340,150,30);
+        p3Rating.setFont(f25);
 
         p3Plot = new JLabel("Plot:");
         p3Plot.setBounds(150,380,150,30);
+        p3Plot.setFont(plotF);
 
         titleField = new JTextField();
         titleField.setBounds(400,150,250,30);
@@ -499,13 +494,7 @@ void movie_NavigatorButtons(){
 
     }
 
-    void setUsericon() throws MalformedURLException {
-    userIcon.setIcon(new ImageIcon(new URL(parser.getUrl_Icon())));
-    }
 
-    void createUser(){
-    ctrl.setup();
-    ctrl.create(user.getText(), username.getText(), encr.hashPassword(password.getText()));
 
-    }
+
 }
