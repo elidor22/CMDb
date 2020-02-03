@@ -10,6 +10,11 @@ public class Login_Controller {
     public String username = "EV";
 
 
+    /**
+     * All password are stored in an hashed form so
+     * it's impossible to validate them without a
+     * middleware that calls encryption provider validator and returns the desired result
+     * */
     public boolean validate_login( String password, String saltedpass){
 
         boolean truepass = false;
@@ -23,6 +28,10 @@ public class Login_Controller {
 
     }
 
+
+    /**Validates if the logged user is administrator or not
+     * then returns a boolean to be used in advance
+     * */
     public boolean validate_admin(String username, String user){
         ctrl.setup();
         ctrl.query(username, user);
@@ -32,7 +41,7 @@ public class Login_Controller {
         return valid;
     }
 
-
+//Testing main
     public static void main(String args[]){
         Login_Controller lg = new Login_Controller();
 

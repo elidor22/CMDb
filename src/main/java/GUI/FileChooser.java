@@ -7,6 +7,10 @@ import javax.swing.*;
 import javax.swing.filechooser.FileSystemView;
 import java.io.File;
 
+
+/**
+ * Gets the image path and also serves as a bridge between the uploader and the user interface
+ * */
 public class FileChooser {
     JFileChooser chooser = new JFileChooser();
     public  void choose() {

@@ -34,6 +34,7 @@ public class MovieDbController {
 
     public  void read() {
         // code to get a movie by id
+        //Throws exception if there are duplicates so the id must be a primary key
         Session session = sessionFactory.openSession();
 
         int id = 2;
@@ -47,8 +48,9 @@ public class MovieDbController {
     }
 
 
+    //Creates a movie entry in the DB
     public void create(String title, String author,String cast, String plot, float rating, String coverUrl) {
-        // code to save a book
+
         movies movies = new movies();
         movies.setTitle(title);
         movies.setDirector(author);
@@ -66,6 +68,9 @@ public class MovieDbController {
         session.getTransaction().commit();
         session.close();
     }
+
+    //Searches an entry based on the given parameters
+
     public void query(String title){
         String hql = "from movies where title like :keyword";
         Session session = sessionFactory.openSession();
@@ -82,7 +87,7 @@ public class MovieDbController {
     }
 
 
-
+//A main class used to debug the class during it's development
     public static void main(String args[]){
         MovieDbController movieDbController = new MovieDbController();
         movieDbController.setup();

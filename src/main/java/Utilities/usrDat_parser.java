@@ -1,7 +1,11 @@
 package Utilities;
 
 
-
+/**
+ * As we need this information to persist between classes
+ * we need some static variables, that will never change as long as we don't change those
+ * and also will not interfere with the Hibernate sessions
+ * */
 public class usrDat_parser {
     private static int id;
     private static String username;

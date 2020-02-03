@@ -9,6 +9,10 @@ import java.io.IOException;
 import java.util.Random;
 
 
+
+/**
+ * Uploads images to Azure storage containers
+ * */
 public class fileUploader {
 
     public static String url;

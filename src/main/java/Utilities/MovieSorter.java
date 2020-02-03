@@ -10,6 +10,11 @@ import DatabaseConnection.movies;
 public class MovieSorter {
     int pass;
     MovieDbController db = new MovieDbController();
+
+    /**
+     * Bublesorts movies in base of their rating
+     * Then the result is reversed so the best movies will appear first
+     * */
     public List<movies> ls;
     public  List bubbleSort(List<movies> list) {
         movies temp;
@@ -36,6 +41,9 @@ public class MovieSorter {
     }
 
 
+    /**
+     * Reverts the sorted list so that the result will look intuitive to the user
+     * */
     public List sorted(List<movies> list){
         bubbleSort(list);
         Collections.reverse(list);

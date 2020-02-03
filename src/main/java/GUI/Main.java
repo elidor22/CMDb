@@ -302,6 +302,9 @@ void search(){
 }
 
 
+/**
+ * Adds functionality to next and previous buttons
+ * */
 void movie_NavigatorButtons(){
     next.addActionListener(new ActionListener() {
         @Override
@@ -352,6 +355,9 @@ void movie_NavigatorButtons(){
 
 
 
+    /**
+     * Checks the user password, user and username match
+     * */
    void loginController(){
 
         loginConfirm.addActionListener(new ActionListener() {
@@ -382,11 +388,19 @@ void movie_NavigatorButtons(){
     }
 
 
+    /**
+     * Calls the file chooser to get te path and start the upload
+     * */
     void upload(){
 
     FileChooser fileChooser= new FileChooser();
     fileChooser.choose();
     }
+
+    /**
+     * resizes thhe images so the label will look good and not
+     * stretched or badly scaled
+     * */
     void coverResizer(String URL) throws MalformedURLException {
         ImageIcon MI = new ImageIcon(new URL(URL));
         Image img = MI.getImage();
@@ -394,7 +408,9 @@ void movie_NavigatorButtons(){
         ImageIcon image = new ImageIcon(newImg);
         movieIcon.setIcon(image);
     }
-
+    /**
+     * JUst initializes the third panel
+     * */
     void panel3(){
         p3Title = new JLabel("Movie title:");
         p3Title.setBounds(150,150,150,30);
@@ -463,6 +479,9 @@ void movie_NavigatorButtons(){
 
 
 
+    /**
+     * Calls the moviedbcontroller create so that the user can create a new movie entry from GUI
+     * */
     void addmovies(){
 
         addMovie.addActionListener(new ActionListener() {

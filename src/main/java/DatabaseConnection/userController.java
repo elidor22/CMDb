@@ -14,6 +14,11 @@ public class userController {
     SessionFactory sessionFactory;
     public List<users> usercl;
 
+
+    /**
+     * Just like book controller, utilizes Hibernate to return
+     * application data
+     * */
     public void setup() {
         // code to load Hibernate Session factory
         final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
@@ -26,6 +31,7 @@ public class userController {
         }
     }
 
+    //Read a user when the id is available, throws exception if the id is multiplicated
     void read(){
         Session session = sessionFactory.openSession();
         int id = 1;
@@ -36,8 +42,9 @@ public class userController {
         session.close();
 
     }
+
+    //Create a new user
     public void create(String user,String username, String password) {
-        // code to save a book
         users usr = new users();
         Encryption_Provider encrypt = new Encryption_Provider();
         String pass = encrypt.hashPassword(password);
@@ -56,6 +63,10 @@ public class userController {
         session.close();
     }
 
+    /**
+     * Uses user and username to prevent problems
+     * with similar words
+     */
     public void query(String username, String user){
         String hql = "from users where username like:keyword and user like:user";
         Session session = sessionFactory.openSession();

@@ -12,6 +12,9 @@ public class users {
     private String user;
     private String url_Icon;
 
+    /**
+     * Another model class to Object map the database tables
+     * */
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)

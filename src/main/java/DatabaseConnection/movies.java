@@ -3,6 +3,10 @@ package DatabaseConnection;
 
 import javax.persistence.*;
 
+
+/**
+ * A model class for hibernate
+ * */
 @Entity
 @Table(name = "movies")
 public class movies {
