@@ -6,6 +6,7 @@ import com.azure.storage.blob.BlobServiceClient;
 import com.azure.storage.blob.BlobServiceClientBuilder;
 import com.azure.storage.blob.models.BlobHttpHeaders;
 import java.io.IOException;
+import java.util.Random;
 
 
 public class fileUploader {
@@ -26,7 +27,8 @@ public class fileUploader {
 // Create the container and return a container client object
         BlobContainerClient containerClient = blobServiceClient.getBlobContainerClient(containerName);
         String localPath = path;
-        String fileName = name;
+        Random rd = new Random(800000);
+        String fileName = name+rd+"   "+rd;
         // File localFile = new File(localPath + fileName);
 
 // Get a reference to a blob
@@ -37,6 +39,7 @@ public class fileUploader {
         BlobHttpHeaders hd = new BlobHttpHeaders();
          localPath = localPath.replace("\\","/");
         blobClient.uploadFromFile(localPath);
+        //Sets the content type so it is displayed as image and not downloaded as octet that is the Azure default header
         hd.setContentType("Content-Type: image/jpeg");
         blobClient.setHttpHeaders(hd);
 
