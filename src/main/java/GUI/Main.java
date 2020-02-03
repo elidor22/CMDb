@@ -364,7 +364,7 @@ void movie_NavigatorButtons(){
                 //usr=ctrl.usercl;
                 //Validate if the user information is valid in order to register it
 
-                if(logctrl.validate_login(password.getText(), parser.getPassword())){
+                if(logctrl.validate_login(String.copyValueOf(password.getPassword()), parser.getPassword())){
                     JOptionPane.showMessageDialog(f,"You're logged in "+parser.getUsername());
                     localUsername.setText(parser.getUsername());
                     if(parser.isIs_admin())
@@ -372,7 +372,7 @@ void movie_NavigatorButtons(){
 
                 }
                 else
-                JOptionPane.showMessageDialog(f, "Try to enter a valid username/password "+ parser.getPassword() );
+                JOptionPane.showMessageDialog(f, "Try to enter a valid username/password " );
 
             }
 
