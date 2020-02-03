@@ -35,6 +35,7 @@ public class fileUploader {
 
 // Upload the blob
         BlobHttpHeaders hd = new BlobHttpHeaders();
+         localPath = localPath.replace("\\","/");
         blobClient.uploadFromFile(localPath);
         hd.setContentType("Content-Type: image/jpeg");
         blobClient.setHttpHeaders(hd);
@@ -44,5 +45,7 @@ public class fileUploader {
         System.out.println(uri);
 
     }
+
+
 
 }

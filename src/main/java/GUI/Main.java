@@ -91,11 +91,11 @@ public Main() throws IOException {
 
     //panel1
     title = new JLabel("Joker");   // movie title label
-    title.setBounds(80,40,400,50);
+    title.setBounds(80,60,400,50);
     title.setFont(titleF);
 
     cast = new JTextArea("feat:Joaquin Phoenix, Frances Conroy");     //cast information area
-    cast.setBounds(80,100,320,65);
+    cast.setBounds(80,120,320,65);
     cast.setFont(castF);
     cast.setEditable(false);
     cast.setOpaque(false);
@@ -103,15 +103,15 @@ public Main() throws IOException {
     cast.setWrapStyleWord(true);
 
     director = new JLabel("Director:Todd Phillips");  //director name label
-    director.setBounds(80,175,400,35);
+    director.setBounds(80,195,400,35);
     director.setFont(f30);
 
     rating = new JLabel("Rating:8.6/10");         //rating label
-    rating.setBounds(80,215,260,40);
+    rating.setBounds(80,235,260,40);
     rating.setFont(f30);
 
     plot = new JTextArea("Forever alone in a crowd, failed comedian Arthur Fleck seeks connection as he walks the streets of Gotham City. Arthur wears two masks -- the one he paints for his day job as a clown, and the guise he projects in a futile attempt to feel like he's part of the world around him. Isolated, bullied and disregarded by society, Fleck begins a slow descent into madness as he transforms into the criminal mastermind known as the Joker.");
-    plot.setBounds(80,260,380,550);  //plot area
+    plot.setBounds(80,280,380,550);  //plot area
     plot.setFont(plotF);
     plot.setOpaque(false);
     plot.setLineWrap(true);
@@ -122,17 +122,17 @@ public Main() throws IOException {
     localUsername.setFont(f25);
 
     movieIcon = new JLabel();   //movie icon link
-    movieIcon.setBounds(500,107,620,500);
+    movieIcon.setBounds(500,100,620,500);
    // movieIcon.setIcon(new ImageIcon(new URL("https://cmdbcit.blob.core.windows.net/cmdb2/Ghostbusters_logo.png")));
-    coverResizer("https://comicfrontline.com/wp-content/uploads/2019/10/The-Joker.jpg");
+    coverResizer("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJKLiEyyz1Q9RC8EBYl3ijr3nuGeyO2ETmwy6Kdq0AQtD0elWD");
 
 
     next = new JButton("Next");  //next button
-    next.setBounds(840,630,120,30);
+    next.setBounds(750,630,110,30);
     next.setFont(serif20);
 
     prev = new JButton("Prev");  //previous button
-    prev.setBounds(690,630,120,30);
+    prev.setBounds(600,630,110,30);
     prev.setFont(serif20);
 
     //TODO: userIcon
@@ -152,10 +152,10 @@ public Main() throws IOException {
     addMovie.setFont(serif20);
 
     search = new JTextField();   // movie name search field
-    search.setBounds(500,50,510,32);
+    search.setBounds(500,50,347,32);
 
     searchB = new JButton("Search");  //button for searching
-    searchB.setBounds(1020,50,100,30);
+    searchB.setBounds(857,50,100,30);
     searchB.setFont(serif20);
 
     p1.add(search);
@@ -439,7 +439,7 @@ void movie_NavigatorButtons(){
         p3Upload = new JButton("Upload");
         p3Upload.setBounds(700,200,200,30);
 
-        p3Back = new JButton("Next");
+        p3Back = new JButton("Back");
         p3Back.setBounds(700,240,200,30);
 
 
